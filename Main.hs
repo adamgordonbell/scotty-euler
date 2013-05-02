@@ -15,8 +15,8 @@ import qualified Text.Blaze.Html5.Attributes as A
 import qualified Views.Index
 
 main = scotty 3000 $ do
-    get "/euler1" $ do
-             blaze Views.Index.render
+    get "/" $ do
+             blaze $ Views.Index.render euler1
 
 euler1 :: Int
 euler1 = sum [ x  |x <- [1..1000], x `mod` 5 == 0 || x `mod` 3 == 0]

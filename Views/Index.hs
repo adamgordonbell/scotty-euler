@@ -4,10 +4,9 @@ module Views.Index where
 import Text.Blaze.Html5
 import Text.Blaze.Html5.Attributes
 
-render = do
+render answer = do
   html $ do
     body $ do
-      h1 "My todo list"
+      h1 "My Euler Answers"
       ul $ do
-        li "learn haskell"
-        li "make a website"
+        li . toHtml $ answer

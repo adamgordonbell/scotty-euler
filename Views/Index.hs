@@ -3,10 +3,16 @@ module Views.Index where
 
 import Text.Blaze.Html5
 import Text.Blaze.Html5.Attributes
+import Model
+import Control.Monad
 
-render answer = do
-  html $ do
+render :: [EulerAnswer] -> Html
+render answers = do
+  html $ docTypeHtml $ do
     body $ do
       h1 "My Euler Answers"
-      ul $ do
-        li . toHtml $ answer
+      ul $ forM_ answers (li . toHtml . resultLine)
+
+resultLine :: EulerAnswer -> String
+resultLine r = concat ["Euler Problem ", show . number $ r, ": ", show . result $ r]
+

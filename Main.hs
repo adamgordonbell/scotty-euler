@@ -13,15 +13,14 @@ import qualified Web.Scotty as S
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 import qualified Views.Index
+import Model
 
 main = scotty 3000 $ do
     get "/" $ do
-             blaze $ Views.Index.render euler1
+             blaze . Views.Index.render $ answers
 
-euler1 :: Int
-euler1 = sum [ x  |x <- [1..1000], x `mod` 5 == 0 || x `mod` 3 == 0]
 
+blaze :: Html -> ActionM()
 blaze = S.html . T.pack . renderHtml
 
-euler2 = undefined
 
